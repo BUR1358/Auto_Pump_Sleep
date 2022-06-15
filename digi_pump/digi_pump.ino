@@ -1,11 +1,3 @@
-/*
-	Данный код превратит вашу Digispark в спящий таймер. Через каждые PERIOD
-	секунд система подаёт 5 вольт на протяжении WORK секунд. Всё время,
-	кроме переключения пина, система спит и потребляет 28 микроампер
-	на плате Digispark с отрезанным светодиодом, стабилизатором
-	и двумя диодами на шину USB. На голом камне будет работать ещё лучше!
-*/
-
 #define PERIOD 86400   // период работы в секундах (пример: 60*60*24*1(1 - день) = 86400 - три дня!)
 #define WORK 40         // время работы в секундах
 #define MOS 1           // пин мосфета
@@ -18,7 +10,6 @@ boolean state = false;
 #include <avr/interrupt.h>
 #define adc_disable() (ADCSRA &= ~(1<<ADEN)) // disable ADC (before power-off)
 #define adc_enable()  (ADCSRA |=  (1<<ADEN)) // re-enable ADC
-// http://alexgyver.ru/arduino/DigiDrivers.rar
 
 void setup() {
   // все пины как входы, экономия энергии
