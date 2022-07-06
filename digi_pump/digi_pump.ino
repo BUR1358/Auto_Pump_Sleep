@@ -55,6 +55,7 @@ void loop() {
 
   sleep_enable();   // разрешаем сон
   sleep_cpu();      // спать!
+  
 }
 
 ISR (WDT_vect) {
