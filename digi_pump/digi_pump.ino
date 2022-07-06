@@ -1,9 +1,10 @@
 #define PERIOD 86400   // период работы в секундах (пример: 60*60*24*1(1 - день) = 86400 - три дня!)
-#define WORK 40         // время работы в секундах
+#define WORK 66         // время работы в секундах
 #define MOS 1           // пин мосфета
 
 uint32_t mainTimer, myTimer;
 boolean state = false;
+boolean first_start = true;
 
 #include <avr/wdt.h>
 #include <avr/sleep.h>
@@ -28,8 +29,14 @@ void setup() {
 }
 
 void loop() {
-  mainTimer++;
-
+  if (!first_start){
+      mainTimer++;
+    }
+  else{
+    mainTimer = PERIOD;
+    first_start = false;
+    }
+  
   if (!state) {                           // если помпа не включена
     if ((long)mainTimer - myTimer > PERIOD) {   // таймер периода
       myTimer = mainTimer;                // сброс таймера
